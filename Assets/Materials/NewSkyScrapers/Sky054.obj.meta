@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: 93ae8bc0f35d90144a32dd63f3741e22
+timeCreated: 1442505873
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Door_01
+    100002: door_glass_01
+    100004: Glass_01
+    100006: Glass_02
+    100008: Railing_01
+    100010: Railing_01_MeshPart0
+    100012: Railing_01_MeshPart1
+    100014: Railing_01_MeshPart2
+    100016: //RootNode
+    100018: Slab_01
+    100020: Wall_01
+    100022: Wall_02
+    100024: Wall_03
+    100026: Wall_04
+    100028: Wall_05
+    100030: Wall_06
+    100032: Wall_07
+    100034: Wall_08
+    100036: wall_1_01
+    100038: wall_2_01
+    400000: Door_01
+    400002: door_glass_01
+    400004: Glass_01
+    400006: Glass_02
+    400008: Railing_01
+    400010: Railing_01_MeshPart0
+    400012: Railing_01_MeshPart1
+    400014: Railing_01_MeshPart2
+    400016: //RootNode
+    400018: Slab_01
+    400020: Wall_01
+    400022: Wall_02
+    400024: Wall_03
+    400026: Wall_04
+    400028: Wall_05
+    400030: Wall_06
+    400032: Wall_07
+    400034: Wall_08
+    400036: wall_1_01
+    400038: wall_2_01
+    2300000: Door_01
+    2300002: door_glass_01
+    2300004: Glass_01
+    2300006: Glass_02
+    2300008: Railing_01_MeshPart0
+    2300010: Railing_01_MeshPart1
+    2300012: Railing_01_MeshPart2
+    2300014: Slab_01
+    2300016: Wall_01
+    2300018: Wall_02
+    2300020: Wall_03
+    2300022: Wall_04
+    2300024: Wall_05
+    2300026: Wall_06
+    2300028: Wall_07
+    2300030: Wall_08
+    2300032: wall_1_01
+    2300034: wall_2_01
+    3300000: Door_01
+    3300002: door_glass_01
+    3300004: Glass_01
+    3300006: Glass_02
+    3300008: Railing_01_MeshPart0
+    3300010: Railing_01_MeshPart1
+    3300012: Railing_01_MeshPart2
+    3300014: Slab_01
+    3300016: Wall_01
+    3300018: Wall_02
+    3300020: Wall_03
+    3300022: Wall_04
+    3300024: Wall_05
+    3300026: Wall_06
+    3300028: Wall_07
+    3300030: Wall_08
+    3300032: wall_1_01
+    3300034: wall_2_01
+    4300000: Door_01
+    4300002: door_glass_01
+    4300004: Glass_01
+    4300006: Glass_02
+    4300008: Railing_01_MeshPart0
+    4300010: Railing_01_MeshPart1
+    4300012: Railing_01_MeshPart2
+    4300014: Slab_01
+    4300016: Wall_01
+    4300018: Wall_02
+    4300020: Wall_03
+    4300022: Wall_04
+    4300024: Wall_05
+    4300026: Wall_06
+    4300028: Wall_07
+    4300030: Wall_08
+    4300032: wall_1_01
+    4300034: wall_2_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

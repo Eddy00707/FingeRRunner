@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: e0c8e67c49fabbb42a09df48e7f9b8e2
+timeCreated: 1442506061
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Frame_01
+    100002: Frame_01_MeshPart0
+    100004: Frame_01_MeshPart1
+    100006: Glaz_01
+    100008: //RootNode
+    100010: Slab_01
+    100012: Wall_01
+    100014: Wall_02
+    100016: Wall_03
+    100018: Wall_04
+    100020: Wall_05
+    100022: Wall_06
+    100024: Wall_07
+    100026: Wall_08
+    100028: Wall_09
+    100030: Wall_10
+    100032: Wall_11
+    100034: Wall_12
+    100036: Wall_13
+    100038: Wall_14
+    100040: Wall_15
+    400000: Frame_01
+    400002: Frame_01_MeshPart0
+    400004: Frame_01_MeshPart1
+    400006: Glaz_01
+    400008: //RootNode
+    400010: Slab_01
+    400012: Wall_01
+    400014: Wall_02
+    400016: Wall_03
+    400018: Wall_04
+    400020: Wall_05
+    400022: Wall_06
+    400024: Wall_07
+    400026: Wall_08
+    400028: Wall_09
+    400030: Wall_10
+    400032: Wall_11
+    400034: Wall_12
+    400036: Wall_13
+    400038: Wall_14
+    400040: Wall_15
+    2300000: Frame_01_MeshPart0
+    2300002: Frame_01_MeshPart1
+    2300004: Glaz_01
+    2300006: Slab_01
+    2300008: Wall_01
+    2300010: Wall_02
+    2300012: Wall_03
+    2300014: Wall_04
+    2300016: Wall_05
+    2300018: Wall_06
+    2300020: Wall_07
+    2300022: Wall_08
+    2300024: Wall_09
+    2300026: Wall_10
+    2300028: Wall_11
+    2300030: Wall_12
+    2300032: Wall_13
+    2300034: Wall_14
+    2300036: Wall_15
+    3300000: Frame_01_MeshPart0
+    3300002: Frame_01_MeshPart1
+    3300004: Glaz_01
+    3300006: Slab_01
+    3300008: Wall_01
+    3300010: Wall_02
+    3300012: Wall_03
+    3300014: Wall_04
+    3300016: Wall_05
+    3300018: Wall_06
+    3300020: Wall_07
+    3300022: Wall_08
+    3300024: Wall_09
+    3300026: Wall_10
+    3300028: Wall_11
+    3300030: Wall_12
+    3300032: Wall_13
+    3300034: Wall_14
+    3300036: Wall_15
+    4300000: Frame_01_MeshPart0
+    4300002: Frame_01_MeshPart1
+    4300004: Glaz_01
+    4300006: Slab_01
+    4300008: Wall_01
+    4300010: Wall_02
+    4300012: Wall_03
+    4300014: Wall_04
+    4300016: Wall_05
+    4300018: Wall_06
+    4300020: Wall_07
+    4300022: Wall_08
+    4300024: Wall_09
+    4300026: Wall_10
+    4300028: Wall_11
+    4300030: Wall_12
+    4300032: Wall_13
+    4300034: Wall_14
+    4300036: Wall_15
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

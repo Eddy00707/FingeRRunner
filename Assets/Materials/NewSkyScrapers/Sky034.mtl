@@ -1,0 +1,44 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  2.1.12.1218
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl Material__1
+Ka 0.117647 0.117647 0.117647
+Kd 0.662745 0.556863 0.439216
+Ks 0.752941 0.752941 0.752941
+illum 2
+Ns 8
+
+newmtl stone
+Ka 0.588235 0.588235 0.588235
+Kd 0.588235 0.588235 0.588235
+Ks 0.9 0.9 0.9
+illum 2
+Ns 4
+map_Kd stone.jpg
+map_bump stone_b.jpg
+bump stone_b.jpg
+
+newmtl Material__3
+Ka 0.117647 0.117647 0.117647
+Kd 0 0.988235 0.988235
+Ks 0.752941 0.752941 0.752941
+illum 2
+Ns 8
+
+newmtl _0___Default
+Ka 0.639216 0.443137 0.34902
+Kd 0.639216 0.443137 0.34902
+Ks 0.9 0.9 0.9
+illum 2
+Ns 4
+
+newmtl ____Default
+Ka 0.117647 0.501961 0.72549
+Kd 0.117647 0.501961 0.72549
+Ks 0.9 0.9 0.9
+illum 2
+Ns 11.3137
