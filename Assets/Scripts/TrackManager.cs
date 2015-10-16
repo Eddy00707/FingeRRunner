@@ -22,6 +22,17 @@ public class TrackManager : MonoBehaviour
 	}
 
 
+	public void BuildBolt(GameObject bolt)
+	{
+		Vector3 boltPosition = new Vector3(this.transform.position.x, this.transform.position.y,exitTrack);
+		GameObject newBolt=(GameObject) Instantiate(bolt, boltPosition, bolt.transform.rotation);
+		newBolt.transform.parent=this.transform;
+		Vector3 l=this.transform.localScale;
+
+
+	}
+
+
 	public void BuildJumper(GameObject jumper)
 	{
 		Vector3 jumperPosition = new Vector3(this.transform.position.x+this.transform.lossyScale.x/2-1.5f,this.transform.position.y,exitTrack);

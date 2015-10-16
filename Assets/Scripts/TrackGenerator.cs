@@ -6,11 +6,13 @@ public class TrackGenerator : MonoBehaviour
 {
 	public bool showTrackBalls;
 
-	public GameObject player,jumper;
+
+
+	public GameObject player,jumper,bolt;
 	public GameObject[] trackBuildings;
 	public GameObject jumpWay, enter,exit;
 
-	public const int TRACK_RENDER_DISTANCE = 50;
+	public float trackRenderDistance;
 
 	GameObject prevBuilding;
 
@@ -39,16 +41,18 @@ public class TrackGenerator : MonoBehaviour
 
 	public void StartNewGame()
 	{
+		heightChangeDirection=Random.value<.5f?true:false;
 		foreach (Transform child in transform) 
 		{
 			GameObject.Destroy(child.gameObject);
 		}
-		StopAllCoroutines ();
+		//StopAllCoroutines ();
 		xPositionForNextLevel=100;
 		jumpForce=TouchInput.JUMP_SPEED-playerSpeedHelperPercent;
 		jumperJumpForce=TouchInput.JUMPER_JUMP_SPEED-playerSpeedHelperPercent;
 		gravity=-Physics.gravity.y;
 		speedToMakeIt=TouchInput.PLAYER_MAX_SPEED;
+		trackRenderDistance = speedToMakeIt*2;
 		
 		positions    = new Vector3[trackBuildings.Length];
 		globalScales = new Vector3[trackBuildings.Length];
@@ -57,7 +61,7 @@ public class TrackGenerator : MonoBehaviour
 		{
 			
 			Transform t = trackBuildings[i].GetComponent<TrackFinder>().track.transform;
-			t.gameObject.GetComponent<MeshRenderer>().enabled=false;
+//			t.gameObject.GetComponent<MeshRenderer>().enabled=false;
 			positions[i] = t.position;
 			globalScales[i] = t.lossyScale;
 			
@@ -78,7 +82,7 @@ public class TrackGenerator : MonoBehaviour
 		
 		prevI=-1;
 		prevJ=-1;
-		iterator = Random.Range (0,trackBuildings.Length);
+		iterator =Random.Range (0,trackBuildings.Length);
 		
 		StartCoroutine(CreateTrack());
 	}
@@ -92,7 +96,7 @@ public class TrackGenerator : MonoBehaviour
 		{
 			//IncreaseSpeed();
 			if(!tickTock) IncreaseBuilding (1.1f);
-			else if(TouchInput.playerPosition.x>=xPositionForNextLevel+TRACK_RENDER_DISTANCE&&tickTock)
+			else if(TouchInput.playerPosition.x>=xPositionForNextLevel+trackRenderDistance&&tickTock)
 			{
 				IncreaseSpeed(1.1f);
 			}
@@ -105,7 +109,7 @@ public class TrackGenerator : MonoBehaviour
 	{
 		while(true)
 		{
-			if(TouchInput.playerPosition.x>=xCenter-TRACK_RENDER_DISTANCE)
+			if(TouchInput.playerPosition.x>=xCenter-trackRenderDistance)
 			{
 				AddBuilding();	
 				ChangeIterator();
@@ -118,6 +122,7 @@ public class TrackGenerator : MonoBehaviour
 	void IncreaseBuilding(float multiplier)
 	{
 		speedToMakeIt*=multiplier;
+		trackRenderDistance = speedToMakeIt*2;
 		tickTock = true;
 
 	}
@@ -128,23 +133,33 @@ public class TrackGenerator : MonoBehaviour
 		tickTock=false;
 		xPositionForNextLevel+=xPositionForNextLevel*1.2f;
 
+
 	}
 
 	void ChangeIterator()
 	{
 		float rnd = Random.value;
 		int max = trackBuildings.Length-1;
-		if(rnd<0.5)
+		float threshold=heightChangeDirection?0.8f:0.2f;
+		if(rnd<threshold)
 		{
-			if(iterator>1&&rnd<0.2) iterator-=2;
-			else if(iterator>0&&rnd>=0.2) iterator--;
-			else iterator++;
+			if(iterator>1&&rnd<threshold/2) iterator-=2;
+			else if(iterator>0&&rnd>=threshold/2) iterator--;
+			else 
+			{
+				heightChangeDirection=false;
+				iterator++;
+			}
 		}
 		else
 		{
-			if(iterator<max-1&&rnd>0.8) iterator+=2;
-			else if(iterator<max&&rnd<=0.8) iterator++;
-			else iterator--;
+			if(iterator<max-1&&rnd>threshold+(1-threshold)/2) iterator+=2;
+			else if(iterator<max&&rnd<=threshold+(1-threshold)/2) iterator++;
+			else 
+			{
+				heightChangeDirection=true;
+				iterator--;
+			}
 		}
 		//iterator++;
 	}
@@ -172,8 +187,8 @@ public class TrackGenerator : MonoBehaviour
 		GameObject newBuilding;
 		if(prevI==-1)
 		{
-			newBuilding = (GameObject)Instantiate(trackBuildings[i],new Vector3(xCenter-positions[i].x,0,-positions[i].z), trackBuildings[i].transform.rotation);
-			this.GetComponent<TownGenerator>().BuildOneBuilding (new Vector3(xCenter-positions[i].x,0,yOrigin));
+			newBuilding =  (GameObject)Instantiate(trackBuildings[i],new Vector3(xCenter-positions[i].x,0,-positions[i].z), trackBuildings[i].transform.rotation);
+			//this.GetComponent<TownGenerator>().BuildOneBuilding (new Vector3(xCenter-positions[i].x,0,yOrigin));
 		}
 		else
 		{
@@ -200,7 +215,7 @@ public class TrackGenerator : MonoBehaviour
 				}
 				else
 				{
-					currentJumpForce=TouchInput.jumperJumpSpeed - playerSpeedHelperPercent; 
+					currentJumpForce=TouchInput.JUMPER_JUMP_SPEED - playerSpeedHelperPercent; 
 					prevBuilding.GetComponent<TrackFinder>().track.GetComponent<TrackManager>().BuildJumper(jumper);
 					goto jumper ;
 				}
@@ -210,9 +225,10 @@ public class TrackGenerator : MonoBehaviour
 				float t = (-b + Mathf.Sqrt (D))/(2*a);
 				float x = x0+v*cosA*t;
 				xCenter=x+globalScales[i].x/2;
-				newBuilding = (GameObject)Instantiate(trackBuildings[i], new Vector3(xCenter-positions[i].x,0,-positions[i].z), trackBuildings[i].transform.rotation);
+				newBuilding = this.GetComponent<TownGenerator>().MyInstantiate(trackBuildings[i],
+				                                                               new Vector3(xCenter-positions[i].x,0,-positions[i].z), trackBuildings[i].transform.rotation, true);
 
-				this.GetComponent<TownGenerator>().BuildOneBuilding (new Vector3(xCenter-positions[i].x,0,yOrigin));
+
 			}
 		}
 
@@ -230,6 +246,8 @@ public class TrackGenerator : MonoBehaviour
 		
 		float yPos = positions[i].z+newBuilding.transform.position.z;
 //		Debug.Log (yOffset+","+yOffsetExit+","+yOrigin);
+
+		this.GetComponent<TownGenerator>().BuildOneBuilding (new Vector3(xCenter-positions[i].x,0,yOrigin));
 
 		newBuilding.GetComponent<TrackFinder>().track.AddComponent<TrackManager>();
 		TrackManager TM = newBuilding.GetComponent<TrackFinder>().track.GetComponent<TrackManager>();
@@ -257,6 +275,9 @@ public class TrackGenerator : MonoBehaviour
 		{
 			SetPlayerPosition(new Vector3(TM.gameObject.transform.position.x-TM.gameObject.transform.lossyScale.x/2,Heights[iterator].Value+1,TM.exitTrack));
 		}
+
+		TM.BuildBolt(bolt);
+
 		prevI=i;
 		prevJ=iterator;
 		newBuilding.transform.parent=this.gameObject.transform;
@@ -290,6 +311,8 @@ public class TrackGenerator : MonoBehaviour
 		//Instantiate(trackBuildings[i],new Vector3(xCenter-positions[i].x,0,-positions[i].z), trackBuildings[i].transform.rotation);
 
 	}
+
+
 
 
 }

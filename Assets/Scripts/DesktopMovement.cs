@@ -37,7 +37,7 @@ public class DesktopMovement : MonoBehaviour
 	{
 		playerSpeed=TouchInput.playerSpeed;
 		playerMaxSpeed=TouchInput.playerMaxSpeed;
-		jumpSpeed=TouchInput.jumpSpeed;
+		jumpSpeed=TouchInput.JUMP_SPEED;
 		jumperJumpSpeed=TouchInput.JUMPER_JUMP_SPEED;
 	}
 

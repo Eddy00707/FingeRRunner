@@ -16,9 +16,9 @@ public class Visibility : MonoBehaviour {
 		while(true)
 		{
 			Vector3 playerPosition = TouchInput.playerPosition;
-			if   ((playerPosition.x>position.x-30&&  this.gameObject.tag=="BuildingProp") // for props
-			    ||(playerPosition.x>position.x+40&&  this.gameObject.tag=="Building") //for track
-			    ||(playerPosition.x>position.x+100)&&this.gameObject.tag=="Ground") //for ground
+			if   ((playerPosition.x>position.x-0&&  this.gameObject.tag=="BuildingProp") // for props
+			      ||(playerPosition.x>position.x+40&&  (this.gameObject.tag=="Building"||this.gameObject.tag=="Bolt")) //for track
+			    ||(playerPosition.x>position.x+200)&&this.gameObject.tag=="Ground") //for ground
 			{
 				Destroy(this.gameObject);
 				StopCoroutine("CheckVisibility");

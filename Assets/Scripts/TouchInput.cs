@@ -18,8 +18,8 @@ public class TouchInput : MonoBehaviour
 	const float Y_THRESHOLD=20, TAP_THRESHOLD=5;
 	
 	public Text playerSpeedText;
-	public const float PLAYER_MAX_SPEED=8,JUMP_SPEED=8, JUMPER_JUMP_SPEED=16, PLAYER_SPEED=8;
-	public static float playerMaxSpeed,jumpSpeed, jumperJumpSpeed, playerSpeed;
+	public const float PLAYER_MAX_SPEED=3,JUMP_SPEED=8, JUMPER_JUMP_SPEED=16, PLAYER_SPEED=6;
+	public static float playerMaxSpeed, playerSpeed;
 	//public float ;
 	public bool jumping;
 	
@@ -43,15 +43,16 @@ public class TouchInput : MonoBehaviour
 	{
 		deadText.gameObject.SetActive(false);
 		this.easyMode=easyMode;
-		StopAllCoroutines();
+		//StopAllCoroutines();
 		SetAllSpeeds();
 		touchDeltas = new Vector2[2];
 		times = new float[2];
 		rb = GetComponent<Rigidbody>();
-		rb.velocity=Vector3.zero;
+
 		playerPosition = this.transform.position; //?
 		jumping=true;
 		jumperBonus=false;
+		rb.velocity=Vector3.zero;
 		this.GetComponent<DesktopMovement>().StartNewGame();
 		StartCoroutine (PlayerSpeed());
 	}
@@ -71,12 +72,10 @@ public class TouchInput : MonoBehaviour
 	{
 		playerSpeed=PLAYER_SPEED;
 		playerMaxSpeed=PLAYER_MAX_SPEED;
-		jumpSpeed=JUMP_SPEED;
-		jumperJumpSpeed=JUMPER_JUMP_SPEED;
 	}
 		
 		// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
 		if(easyMode) Run (playerSpeed);
 		if(Input.touchCount>0)
@@ -97,7 +96,7 @@ public class TouchInput : MonoBehaviour
 				else if(touch.phase== TouchPhase.Ended)
 				{
 					Vector2 touchDistance = touch.position-touchDeltas[i];
-					if(touchDistance.magnitude<TAP_THRESHOLD)
+					if(Mathf.Abs(touchDistance.x)<TAP_THRESHOLD&&Mathf.Abs(touchDistance.y)<TAP_THRESHOLD/2)
 					{
 						gesture.text="jumping Mag ="+touchDistance.magnitude;
 						Jump ();
@@ -119,7 +118,7 @@ public class TouchInput : MonoBehaviour
 						{
 							float speed = -touchDistance.y/(Time.time-times[i]);
 							gesture.text="running. -y="+(-touchDistance.y)+". Time="+Time.time+". StartTime="+times[i]+".speed="+speed;
-							Run (speed/15f);
+							Run (playerMaxSpeed*speed/150f);
 						}
 					}
 
@@ -141,7 +140,6 @@ public class TouchInput : MonoBehaviour
 	public static void IncreaseSpeed (float multiplier)
 	{
 		playerMaxSpeed*=multiplier;
-		playerSpeed*=multiplier;
 		playerSpeed*=multiplier;
 	}
 	
@@ -167,10 +165,10 @@ public class TouchInput : MonoBehaviour
 	{
 		if(!jumping)
 		{
-			rb.AddForce(transform.forward*input,ForceMode.Force);
-
+			if(rb.velocity.x<(playerMaxSpeed))rb.AddForce(transform.forward*input,ForceMode.Force);
+			if(rb.velocity.x>(playerMaxSpeed)) rb.velocity=new Vector3(playerMaxSpeed,rb.velocity.y);
 		}
-		if(rb.velocity.x>(playerMaxSpeed)) rb.velocity = new Vector3(playerMaxSpeed,rb.velocity.y,0);
+
 	}
 	
 	public void Jump()
@@ -178,7 +176,7 @@ public class TouchInput : MonoBehaviour
 		if(!jumping)
 		{
 			float jumpStrength;
-			jumpStrength=jumperBonus?jumperJumpSpeed:jumpSpeed;
+			jumpStrength=jumperBonus?JUMPER_JUMP_SPEED:JUMP_SPEED;
 			GetComponent<Rigidbody>().AddForce(transform.up*jumpStrength,ForceMode.VelocityChange);
 			jumping=true;
 		}
@@ -192,10 +190,15 @@ public class TouchInput : MonoBehaviour
 			jumperBonus=true;
 			//Jump (jumperJumpSpeed);
 		}
+		else if(other.gameObject.tag=="Bolt")
+		{
+			Debug.Log ("Got the bolt");
+			Destroy(other.gameObject);
+		}
 		else 
 		{
-			GetComponent<Rigidbody>().velocity=Vector3.zero;
-			BeDead ();
+//			GetComponent<Rigidbody>().velocity=Vector3.zero;
+//			BeDead ();
 		}
 	}
 
@@ -217,6 +220,13 @@ public class TouchInput : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision) 
 	{
+		string tag = collision.gameObject.tag;
+		if(tag=="Building"||tag=="Ground"||tag=="BuildingProp")
+		{
+			Debug.Log("we hit "+collision.gameObject.name);
+			BeDead();
+			return;
+		}
 		if(jumping)
 		{
 			if(collision.gameObject.tag=="Ground"||collision.gameObject.tag=="BuildingProp")
